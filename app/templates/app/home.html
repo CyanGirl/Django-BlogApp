@@ -1,0 +1,45 @@
+{% extends "app/base.html" %} {%block content%}<br />
+
+<div>
+  <div class="search-form row">
+    <form method="post" class="right">
+      {% csrf_token %}
+
+      <div class="materialize-textarea col s3">
+        <input placeholder="Title" type="text" name="title" />
+      </div>
+      <div class="materialize-textarea col s4">
+        <input placeholder="Category" type="text" name="category" />
+      </div>
+      <button type="submit" class="btn btn-primary">
+        <i class="material-icons col s4">filter_list</i>Filter
+      </button>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  {% if posts.count < 1 %}
+  <br />
+  <h5 class="pink-text center-align">Oops! We could not find anything...</h5>
+  {% endif %} {% for post in posts %}
+
+  <div class="col s3">
+    <div class="card horizontal hoverable">
+      <div class="card-image">
+        <img src="/media/{{post.image}}" />
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <small> Date: {{ post.post_on.date }} </small>
+          <h6><a href="{% url 'blog_detail' post.pk%}">{{ post.title }}</a></h6>
+
+          <p>{{ post.body | slice:":10" }}...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {%endfor%}
+</div>
+{% endblock %}
