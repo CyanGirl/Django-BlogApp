@@ -6,7 +6,10 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Posts
-        fields = ('title', 'body', 'image', 'categories')
+        fields = ('title', 'body', 'image')
+        widgets={
+            'body':forms.Textarea(attrs={'style':'height:30vh'}),
+        }
 
 
 class CommentForm(forms.ModelForm):

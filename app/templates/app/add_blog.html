@@ -1,0 +1,31 @@
+{% extends 'app/base.html' %} {% block content %}
+<html>
+  <h4 class="center-align">
+    Add your Idea..<i class="material-icons prefix">extension</i>
+  </h4>
+
+  <div class="container">
+    <form class="form" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col s12">
+          <b>Title :</b>
+          <div class="input-field inline">{{form.title}}</div>
+        </div>
+      </div>
+      <span> <b>Body :</b></span>
+      {{form.body}}
+      <br /><br />
+      <div class="input-field">
+        <span><b>Image</b></span>
+        {{form.image}}
+      </div>
+
+      <br />
+      <div class="center-align">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+  {% endblock %}
+</html>

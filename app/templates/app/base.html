@@ -19,6 +19,8 @@
         <a href="#" class="brand-logo">BlogApp</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a href="{% url 'all_blogs' %}">Home</a></li>
+          <li><a href="{% url 'add_blog' %}">New</a></li>
+          {% block custom-nav %}{% endblock %}
         </ul>
       </div>
     </nav>

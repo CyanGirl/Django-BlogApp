@@ -1,4 +1,9 @@
-{% extends "app/base.html" %} {% block content %}
+{% extends "app/base.html" %} {% block custom-nav %}
+<li><a href="{% url 'edit_blog' post.pk %}">Edit</a></li>
+{% endblock %}
+
+<br />
+{% block content %}
 <div class="container">
   <div class="main-post">
     <p class="posts right-align">Date: {{ post.post_on.date }}</p>
@@ -15,7 +20,7 @@
   </div>
   <br /><br />
   <div class="comment left-align">
-    <h5>Leave a comment <i class="material-icons prefix">mode_edit</i></h5>
+    <h5>Leave a comment <i class="material-icons prefix">insert_comment</i></h5>
     <form action="/{{ post.pk }}/" method="post">
       {% csrf_token %}
       <div class="row">
