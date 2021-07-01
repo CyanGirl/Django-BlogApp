@@ -33,7 +33,11 @@
         <div class="card-content">
           <small> Date: {{ post.post_on.date }} </small>
           <h6><a href="{% url 'blog_detail' post.pk%}">{{ post.title }}</a></h6>
-
+          <a
+            href="{% url 'export' post.pk %}"
+            class="btn-floating halfway-fab waves-effect waves-light red"
+            ><i class="material-icons">file_download</i></a
+          >
           <p>{{ post.body | slice:":10" }}...</p>
         </div>
       </div>

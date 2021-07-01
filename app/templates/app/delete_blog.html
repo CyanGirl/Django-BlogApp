@@ -1,0 +1,25 @@
+{% extends 'app/base.html' %} {% block content %} <br /><br />
+<h4 class="center-align">Are you sure you want to delete {{name}}?</h4>
+<div class="center-align" style="padding: 10px">
+  <form method="POST">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col s12">
+        <b>Please type the title to confirm :</b>
+        <div class="input-field inline">
+          <input
+            type="text"
+            name="blogname"
+            placeholder="Blog Title"
+            required
+          />
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn red accent-3">
+      Delete
+      <i class="material-icons left">delete</i>
+    </button>
+  </form>
+</div>
+{% endblock %}

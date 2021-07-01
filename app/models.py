@@ -17,7 +17,7 @@ class Posts(models.Model):
     image = models.ImageField(upload_to="blog_images")
     post_on = models.DateTimeField(auto_now_add=True)
     last_modify = models.DateTimeField(auto_now_add=True)
-    categories = models.ManyToManyField('Category', related_name='posts')
+    categories = models.ForeignKey('Category', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title

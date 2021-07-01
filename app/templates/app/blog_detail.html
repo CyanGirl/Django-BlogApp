@@ -1,5 +1,6 @@
 {% extends "app/base.html" %} {% block custom-nav %}
 <li><a href="{% url 'edit_blog' post.pk %}">Edit</a></li>
+<li><a href="{% url 'delete_blog' post.pk %}">Delete</a></li>
 {% endblock %}
 
 <br />
@@ -14,8 +15,7 @@
       <p class="flow-text">{{ post.body | linebreaks }}</p>
     </div>
     <p class="center-align pink-text">
-      &nbsp; Categories:&nbsp; {% for category in post.categories.all %}
-      <span> {{ category.name }} </span>&nbsp; {% endfor %}
+      &nbsp; Categories:&nbsp; {{ post.categories.name }}
     </p>
   </div>
   <br /><br />

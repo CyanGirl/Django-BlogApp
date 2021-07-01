@@ -1,9 +1,10 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.urls import reverse
 from .models import Posts, Comments
 from .forms import CommentForm, PostForm
 from .models import Posts,Comments,Category
-
+from django.http import HttpResponse
+import csv
 
 # for all blogs posted
 def all_blogs(request):
@@ -78,5 +79,42 @@ def add_blog(request):
 
     else:
         form=PostForm(request.POST,request.FILES)
-        print(request.POST['category'])
+        print(request.POST['categories'])
+        print ("Checking",form.is_valid())
+
+        if form.is_valid():
+            form.save()
+        else:
+            print(form.errors)
         return redirect(reverse("all_blogs"))
+
+def delete_blog(request,pk):
+    print(pk)
+    post=get_object_or_404(Posts,pk=pk)
+    title=post.title
+    if request.method=="GET":
+        return render(request,"app/delete_blog.html",{"name":title})
+    else:
+        blogname=request.POST['blogname']
+        print(blogname)
+        if blogname==title:
+            post.delete()
+        else:
+            print("Title did not match")
+        return redirect(reverse("all_blogs"))
+
+def export_blog(request,pk):
+
+    context={}
+    post = Posts.objects.get(pk=pk)
+    body=post.body
+    title=post.title
+
+    response=HttpResponse(content_type="text/plain")
+    response['Content-Disposition']=f'attachment;filename={post.title}.txt'
+
+    writer=csv.writer(response)
+    writer.writerow([title])
+    writer.writerow([])
+    writer.writerow([body])
+    return response
