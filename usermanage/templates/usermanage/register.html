@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% block content %}
+<h4 class="center-align">Unwind your Ideas</h4>
+<div class="container">
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row">
+      {{formUser}}
+      <br /><br />
+      {{formAuth}}
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+</div>
+{% endblock%}

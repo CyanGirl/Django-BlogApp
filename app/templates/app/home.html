@@ -1,5 +1,13 @@
-{% extends "app/base.html" %} {%block content%}<br />
-
+{% extends "app/base.html" %} {# adding to navbar by checking authentication #}
+{% block custom-nav %} {% if user.is_authenticated %}
+<li><a href="{% url 'usermanage:logout' %}">Logout</a></li>
+<li>
+  <a href="{% url 'usermanage:delete_account' user.pk %}">Delete Account</a>
+</li>
+{% else %}
+<li><a href="{% url 'usermanage:login' %}">Login</a></li>
+{% endif %} {% endblock %} {%block content%}
+<br />
 <div>
   <div class="search-form row">
     <form method="post" class="right">
