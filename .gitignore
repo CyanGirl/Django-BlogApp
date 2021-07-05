@@ -5,3 +5,4 @@ blogproject/.env
 .env
 media
 usermanage/__pycache__
+apis/__pycache__
