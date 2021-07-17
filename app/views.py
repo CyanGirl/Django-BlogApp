@@ -5,6 +5,7 @@ from .forms import CommentForm, PostForm
 from .models import Posts,Comments,Category
 from django.http import HttpResponse
 import csv
+from django.contrib.auth.decorators import login_required
 
 # for all blogs posted
 def all_blogs(request):
@@ -52,10 +53,17 @@ def blog_detail(request, pk):
 
     return render(request, "app/blog_detail.html", context)
 
+@login_required
 def edit_blog(request,pk):
 
+    username=request.user.username
     context={}
     post=Posts.objects.get(pk=pk)
+
+    if post.author!=username:
+        print("redirecting")
+        return redirect(reverse("all_blogs"))
+    
     if request.method=="GET":
         form=PostForm(instance=post)
         return render(request,"app/edit_blog.html",{"form":form,"post":post})
@@ -83,14 +91,27 @@ def add_blog(request):
         print ("Checking",form.is_valid())
 
         if form.is_valid():
-            form.save()
+            obj=form.save(commit=False)
+            if request.user.is_authenticated:
+                obj.author=request.user.username
+            else:
+                obj.author='Anonymous'
+            obj.save()
+
         else:
             print(form.errors)
         return redirect(reverse("all_blogs"))
 
+@login_required
 def delete_blog(request,pk):
     print(pk)
+
+    username=request.user.username
     post=get_object_or_404(Posts,pk=pk)
+
+    if post.author!=username:
+        return redirect(reverse("all_blogs"))
+
     title=post.title
     if request.method=="GET":
         return render(request,"app/delete_blog.html",{"name":title})

@@ -12,6 +12,7 @@ class Category(models.Model):
 
 class Posts(models.Model):
 
+    author=models.CharField(max_length=100,default='Anonymous')
     title = models.CharField(max_length=50)
     body = models.TextField()
     image = models.ImageField(upload_to="blog_images")
@@ -24,7 +25,8 @@ class Posts(models.Model):
 
 
 class Comments(models.Model):
-    author = models.CharField(max_length=20)
+
+    author = models.CharField(max_length=20,default='Anonymous')
     description = models.TextField()
     post_on = models.DateTimeField(auto_now_add=True)
     post = models.ForeignKey('Posts', on_delete=models.CASCADE)
