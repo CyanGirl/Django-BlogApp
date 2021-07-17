@@ -34,7 +34,11 @@ def blog_detail(request, pk):
     if request.method == "POST":
         form = CommentForm(request.POST,instance=post)
         if form.is_valid():
-            author=form.cleaned_data['author']
+            if request.user.is_authenticated:
+                author=request.user.username
+            else:
+                author="Anonymous"
+                
             description=form.cleaned_data['description']
             comment=Comments(author=author,description=description,post=post)
             comment.save()
