@@ -27,11 +27,11 @@ A Blogging App for posting and sharing ideas.
 
 ## Functionalities added :
 
-- Posts can be added anonymously or as a logged in User.
-- For logged in users, edit or delete blogs can be done.
-- Users can view, delete or update their accounts.
-- Users can track their posts and comments seperately.
-- Comments can be posted anonymously or as logged in user.
+- Posts can be added anonymously or as a logged in Author.
+- Comments can be posted anonymously or as logged in Author.
+- For logged in Authors, edit or delete blogs can be done.
+- Authors can view, delete or update their accounts.
+- Authors can track their posts and comments seperately.
 - Details of all posts can be read via API.
 
 ## Project Structure :

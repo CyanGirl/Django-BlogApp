@@ -1,0 +1,66 @@
+{% extends 'base.html' %} {% block custom-nav %}
+<li>
+  <a href="{% url 'usermanage:delete_account' user.pk %}">Delete</a>
+</li>
+<li>
+  <a href="{% url 'usermanage:edit_account' user.pk %}">Update</a>
+</li>
+{% endblock %} {% block content %}
+<div class="container">
+  <h3 class="center">And there you go, {{user.username}}...</h3>
+  <br />
+  <div class="Profile">
+    <ul class="collection">
+      <li class="collection-item avatar center">
+        <img
+          class="center"
+          src="/media/{{author.picture}}"
+          alt=""
+          style="width: 40vw; height: 30vh"
+        />
+        <br />
+        <p>{{author.bio|linebreaks}}</p>
+      </li>
+    </ul>
+  </div>
+  <br /><br />
+  <div class="Posts">
+    <h5>Your Amazing Ideas</h5>
+
+    {% for post in posts %}
+    <ul class="collection with-header">
+      <li class="collection-item">
+        <div>
+          <span class="pink-text">{{post.title}} </span>| Post on:
+          {{post.post_on|date:"d-m-Y"}}
+
+          <a href="{% url 'blog_detail' post.pk %}" class="secondary-content"
+            ><i class="material-icons">open_in_new</i></a
+          >
+        </div>
+      </li>
+    </ul>
+    {% endfor %}
+  </div>
+  <br /><br />
+  <div class="comments">
+    <h5>Your Deep Thoughts</h5>
+    {% for comment in comments %}
+    <ul class="collection with-header">
+      <li class="collection-item">
+        <div>
+          <span class="pink-text">{{comment.description |slice:":30"}} </span>|
+          Post on: {{comment.post_on|date:"d-m-Y"}}
+
+          <a
+            href="{% url 'blog_detail' comment.post.pk %}"
+            class="secondary-content"
+            ><i class="material-icons">open_in_new</i></a
+          >
+        </div>
+      </li>
+    </ul>
+    {% endfor %}
+  </div>
+</div>
+{% endblock%}

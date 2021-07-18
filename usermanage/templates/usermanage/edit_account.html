@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block content %}
+<h3 class="center">Make it Awesome!</h3>
+<br /><br />
+<div class="container">
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="col s12">
+      <b>Avatar :</b>
+      {{form.picture}}
+    </div>
+    <br /><br />
+    <div class="col s12">
+      <b>Bio :</b>
+      {{form.bio}}
+    </div>
+    <br /><br />
+    <div class="center">
+      <button type="submit" class="btn btn-primary">Update</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

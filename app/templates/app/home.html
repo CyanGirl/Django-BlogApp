@@ -1,9 +1,7 @@
 {% extends "app/base.html" %} {# adding to navbar by checking authentication #}
 {% block custom-nav %} {% if user.is_authenticated %}
+<li><a href="{% url 'usermanage:account_details' user.pk %}">Profile</a></li>
 <li><a href="{% url 'usermanage:logout' %}">Logout</a></li>
-<li>
-  <a href="{% url 'usermanage:delete_account' user.pk %}">Delete Account</a>
-</li>
 {% else %}
 <li><a href="{% url 'usermanage:login' %}">Login</a></li>
 {% endif %} {% endblock %} {%block content%}
