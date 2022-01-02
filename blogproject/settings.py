@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+import django_heroku
 
 load_dotenv()
 
@@ -126,5 +127,5 @@ LOGIN_URL = "/authors/accounts/login/"
 LOGIN_REDIRECT_URL = "all_blogs"
 LOGOUT_REDIRECT_URL = "all_blogs"
 
-
+django_heroku.settings(locals())
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
