@@ -10,11 +10,14 @@
   <div class="search-form row">
     <form method="post" class="right">
       {% csrf_token %}
+      <div class="materialize-textarea col s3">
+        <input placeholder="Author" type="text" name="author" />
+      </div>
 
       <div class="materialize-textarea col s3">
         <input placeholder="Title" type="text" name="title" />
       </div>
-      <div class="materialize-textarea col s4">
+      <div class="materialize-textarea col s3">
         <input placeholder="Category" type="text" name="category" />
       </div>
       <button type="submit" class="btn btn-primary">

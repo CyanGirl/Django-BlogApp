@@ -9,7 +9,9 @@
 {% block content %}
 <div class="container">
   <div class="main-post">
-    <p class="posts right-align">Date: {{ post.post_on.date | date:"d-m-Y"}}</p>
+    <p class="posts right-align">
+      <i>Date: {{ post.post_on.date | date:"d-m-Y"}}</i>
+    </p>
     <div class="center-align post-body">
       <img src="/media/{{post.image}}" style="width: 60vw; height: 40vh" />
       <h4 class="center-align post-body">{{ post.title | title }}</h4>

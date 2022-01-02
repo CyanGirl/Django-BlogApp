@@ -24,10 +24,10 @@
   <div class="navbar-fixed">
     <nav class="cyan darken-4">
       <div class="nav-wrapper">
-        <a href="#" class="brand-logo">BlogApp</a>
+        <a href="{% url 'all_blogs' %}" class="brand-logo">BlogApp</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a href="{% url 'all_blogs' %}">Home</a></li>
-          <li><a href="{% url 'add_blog' %}">New</a></li>
+          <li><a href="{% url 'add_blog' %}">Add New</a></li>
           {% block custom-nav %}{% endblock %}
         </ul>
       </div>
@@ -48,14 +48,27 @@
       <div class="col l6 s12">
         <h5 class="white-text">BlogApp</h5>
         <p class="grey-text text-lighten-4">
-          A place to share your ideas and thoughts.
+          A safe place to share your ideas and thoughts.
+          <br />Write Anonymously or with a Pen name, We are here to read.
         </p>
       </div>
       <div class="col l4 offset-l2 s12">
         <h5 class="white-text">Links</h5>
         <ul>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-          <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+          <li>
+            <a
+              class="grey-text text-lighten-3"
+              href="https://github.com/CyanGirl/Django-BlogApp"
+              >Contribue</a
+            >
+          </li>
+          <li>
+            <a
+              class="grey-text text-lighten-3"
+              href="https://github.com/CyanGirl"
+              >Other Projects</a
+            >
+          </li>
         </ul>
       </div>
     </div>
